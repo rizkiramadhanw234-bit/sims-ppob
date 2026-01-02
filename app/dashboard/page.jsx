@@ -4,6 +4,7 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import UserHeader from "../../components/userHeader";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { fetchProfile } from "../../redux/profileSlice";
 import { fetchBalance } from "../../redux/balanceSlice";
@@ -65,12 +66,10 @@ export default function Dashboard() {
                 <p>Loading services...</p>
               ) : (
                 services.map((item, index) => (
-                  <div
+                  <Link
                     key={index}
-                    onClick={() =>
-                      router.push(`/pembayaran?code=${item.service_code}`)
-                    }
-                    className="flex flex-col items-center gap-2 w-24 cursor-pointer hover:scale-105 transition"
+                    href={`/pembayaran?code=${item.service_code}`}
+                    className="flex flex-col items-center gap-2 w-24 cursor-pointer hover:scale-105 transition no-underline"
                   >
                     <Image
                       src={item.service_icon}
@@ -84,7 +83,7 @@ export default function Dashboard() {
                     <p className="text-xs text-gray-500">
                       Rp {item.service_tariff}
                     </p>
-                  </div>
+                  </Link>
                 ))
               )}
             </div>
