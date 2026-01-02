@@ -169,28 +169,95 @@ export default function Akun() {
 
         <div className="flex items-center justify-center gap-6 mt-5 max-w-7xl mx-auto px-6 py-4">
           <form className="w-150">
-            <input
-              className="mb-6 shadow border rounded w-full py-2 px-3"
-              type="email"
-              value={form.email}
-              disabled
-            />
-            <input
-              className="mb-6 shadow border rounded w-full py-2 px-3"
-              name="first_name"
-              placeholder="Nama Depan"
-              value={form.first_name}
-              disabled={!isEditing}
-              onChange={handleChange}
-            />
-            <input
-              className="mb-6 shadow border rounded w-full py-2 px-3"
-              name="last_name"
-              placeholder="Nama Belakang"
-              value={form.last_name}
-              disabled={!isEditing}
-              onChange={handleChange}
-            />
+            {/* Email */}
+            <div className="mb-6 relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 pl-10 text-gray-700 bg-gray-100 cursor-not-allowed"
+                type="email"
+                value={form.email}
+                disabled
+              />
+            </div>
+
+            {/* Nama Depan*/}
+            <div className="mb-6 relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </div>
+              <input
+                className={`shadow appearance-none border rounded w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 ${
+                  isEditing
+                    ? "focus:ring-red-500 focus:border-transparent"
+                    : "bg-gray-100 cursor-not-allowed"
+                }`}
+                name="first_name"
+                placeholder="Nama Depan"
+                value={form.first_name}
+                disabled={!isEditing}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Nama Belakang */}
+            <div className="mb-6 relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </div>
+              <input
+                className={`shadow appearance-none border rounded w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 ${
+                  isEditing
+                    ? "focus:ring-red-500 focus:border-transparent"
+                    : "bg-gray-100 cursor-not-allowed"
+                }`}
+                name="last_name"
+                placeholder="Nama Belakang"
+                value={form.last_name}
+                disabled={!isEditing}
+                onChange={handleChange}
+              />
+            </div>
 
             <div className="flex flex-col gap-3">
               {!isEditing ? (

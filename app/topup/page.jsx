@@ -96,7 +96,7 @@ export default function TopUp() {
                 <div
                   key={nominal}
                   onClick={() => setAmount(nominal)}
-                  className="px-4 py-2 bg-gray-100 rounded sm cursor-pointer"
+                  className="px-4 py-2 bg-gray-100 rounded sm cursor-pointer hover:bg-gray-200 hover:scale-105 transition duration-150"
                 >
                   <h1>Rp. {nominal.toLocaleString("id-ID")}</h1>
                 </div>
