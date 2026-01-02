@@ -3,7 +3,6 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import UserHeader from "../../components/userHeader";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProfile } from "../../redux/profileSlice";
@@ -16,11 +15,6 @@ export default function TopUp() {
 
   const profile = useSelector((state) => state.profile.data);
   const loading = useSelector((state) => state.profile.loading);
-
-  const balance = useSelector((state) => state.balance.data);
-  const loadingBalance = useSelector((state) => state.balance.loading);
-
-  const showBalance = useSelector((state) => state.ui.showBalance);
 
   const topupLoading = useSelector((state) => state.topup.loading);
   const topupSuccess = useSelector((state) => state.topup.success);

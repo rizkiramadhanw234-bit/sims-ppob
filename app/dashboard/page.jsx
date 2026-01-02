@@ -5,28 +5,25 @@ import Navbar from "../../components/Navbar";
 import UserHeader from "../../components/userHeader";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useSelector, useDispatch } from "react-redux";
 import { fetchProfile } from "../../redux/profileSlice";
 import { fetchBalance } from "../../redux/balanceSlice";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchServices } from "../../redux/servicesSlice";
 import { fetchBanner } from "../../redux/bannerSlice";
 
 export default function Dashboard() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile.data);
-  const loading = useSelector((state) => state.profile.loading);
 
-  const balance = useSelector((state) => state.balance.data);
-  const loadingBalance = useSelector((state) => state.balance.loading);
+  // Profile
+  const profile = useSelector((state) => state.profile.data);
+  const loadingProfile = useSelector((state) => state.profile.loading);
 
   const services = useSelector((state) => state.services.data);
   const loadingServices = useSelector((state) => state.services.loading);
 
   const banner = useSelector((state) => state.banner.data);
   const loadingBanner = useSelector((state) => state.banner.loading);
-
-  const showBalance = useSelector((state) => state.ui.showBalance);
 
   // redirect
   React.useEffect(() => {
@@ -36,8 +33,9 @@ export default function Dashboard() {
     }
   }, []);
 
-  // saldo
+  // profile, balance
   React.useEffect(() => {
+    dispatch(fetchProfile());
     dispatch(fetchBalance());
   }, [dispatch]);
 
@@ -51,12 +49,7 @@ export default function Dashboard() {
     dispatch(fetchBanner());
   }, [dispatch]);
 
-  // fetch profile
-  React.useEffect(() => {
-    dispatch(fetchProfile());
-  }, [dispatch]);
-
-  if (loading || !profile)
+  if (loadingProfile || !profile)
     return <p className="text-center mt-10">Loading...</p>;
 
   return (

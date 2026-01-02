@@ -22,11 +22,6 @@ export default function Pembayaran() {
   const profile = useSelector((state) => state.profile.data);
   const loadingProfile = useSelector((state) => state.profile.loading);
 
-  // Balance
-  const balance = useSelector((state) => state.balance.data);
-  const loadingBalance = useSelector((state) => state.balance.loading);
-  const showBalance = useSelector((state) => state.ui.showBalance);
-
   // Services
   const services = useSelector((state) => state.services.data);
   const loadingServices = useSelector((state) => state.services.loading);
@@ -59,10 +54,10 @@ export default function Pembayaran() {
 
   // guard
   useEffect(() => {
-    if (services?.length > 0 && !selectedService) {
+    if (!loadingServices && services?.length > 0 && !selectedService) {
       router.replace("/dashboard");
     }
-  }, [services, selectedService, router]);
+  }, [services, selectedService, loadingServices, router]);
 
   // Handle pembayaran success
   useEffect(() => {
