@@ -19,6 +19,12 @@ export default function UserHeader() {
   const loadingBalance = useSelector((state) => state.balance.loading);
   const showBalance = useSelector((state) => state.ui.showBalance);
 
+  //   default profile image
+  const isValidProfileImage =
+    profile.profile_image &&
+    profile.profile_image.trim() !== "" &&
+    !profile.profile_image.includes("/null");
+
   if (loadingProfile || !profile)
     return <p className="text-center mt-10">Loading...</p>;
 
@@ -28,11 +34,12 @@ export default function UserHeader() {
       <div className="flex flex-col items-start justify-center max-w-7xl mx-auto px-6 py-4">
         <div>
           <Image
-            src={profile.profile_image || Avatar}
+            src={isValidProfileImage ? profile.profile_image : Avatar}
             alt="avatar"
             width={80}
             height={80}
-            className="w-30 h-30 rounded-full object-cover border-4 border-white shadow-lg mb-2"
+            className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg mb-2"
+            priority
           />
         </div>
         <p className="text-base">Selamat Datang,</p>
@@ -48,6 +55,8 @@ export default function UserHeader() {
             src={BgSaldo}
             alt="bg-saldo"
             className="w-full h-45 object-cover"
+            width={400}
+            height={180}
             priority
           />
           <div className="absolute inset-0 flex flex-col gap-5 justify-center p-6 text-white">

@@ -39,7 +39,14 @@ export default function Akun() {
         last_name: profile.last_name || "",
         email: profile.email || "",
       });
-      setPreview(profile.profile_image || null);
+
+      // Set preview gambar profil
+      const isValidProfileImage =
+        profile.profile_image &&
+        profile.profile_image.trim() !== "" &&
+        !profile.profile_image.includes("/null");
+
+      setPreview(isValidProfileImage ? profile.profile_image : null);
     }
   }, [profile]);
 
@@ -67,11 +74,13 @@ export default function Akun() {
     try {
       const res = await dispatch(updateImage(selectedFile)).unwrap();
 
+      // Update preview
       setPreview(res.profile_image);
       setSelectedFile(null);
 
       alert("Foto profil berhasil diupdate!");
 
+      // Refresh profile data
       dispatch(fetchProfile());
     } catch (err) {
       console.log("Gagal upload foto", err);
@@ -82,12 +91,6 @@ export default function Akun() {
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
-    console.log("File selected:", {
-      name: file.name,
-      type: file.type,
-      size: (file.size / 1024 / 1024).toFixed(2) + " MB",
-    });
 
     // Validate file type
     if (!file.type.startsWith("image/")) {
@@ -105,12 +108,19 @@ export default function Akun() {
     }
 
     setSelectedFile(file);
+
     setPreview(URL.createObjectURL(file));
   };
 
   const handleCancelAvatar = () => {
     setSelectedFile(null);
-    setPreview(null);
+
+    const isValidProfileImage =
+      profile.profile_image &&
+      profile.profile_image.trim() !== "" &&
+      !profile.profile_image.includes("/null");
+
+    setPreview(isValidProfileImage ? profile.profile_image : null);
   };
 
   const handleLogout = () => {
@@ -126,19 +136,43 @@ export default function Akun() {
       <Navbar />
       <div className="min-h-screen bg-white max-w-7xl mx-auto px-6 py-4">
         <div className="flex flex-col items-center gap-5">
-          <Image
-            src={preview || Avatar}
-            alt="avatar"
-            width={80}
-            height={80}
-            className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
-            unoptimized
-          />
+          {/* Avatar */}
+          <div className="relative">
+            <Image
+              src={preview || Avatar}
+              alt="avatar"
+              width={80}
+              height={80}
+              className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
+              priority
+            />
+            {/* Overlay untuk edit */}
+            <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 rounded-full transition-all duration-200 flex items-center justify-center opacity-0 hover:opacity-100 cursor-pointer">
+              <label className="cursor-pointer">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8 text-white"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                </svg>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                  className="hidden"
+                />
+              </label>
+            </div>
+          </div>
+
           <h1 className="font-bold text-xl">
             {profile.first_name} {profile.last_name}
           </h1>
 
-          <label className="cursor-pointer mt-2 text-red-500 hover:text-red-700">
+          {/* Label untuk upload */}
+          <label className="cursor-pointer text-red-500 hover:text-red-700 font-medium">
             Ubah Foto
             <input
               type="file"
@@ -148,18 +182,19 @@ export default function Akun() {
             />
           </label>
 
+          {/* Tombol untuk upload*/}
           {selectedFile && (
             <div className="flex gap-2 mt-2">
               <button
                 onClick={handleSaveAvatar}
                 disabled={updating}
-                className="px-4 py-1 bg-red-700 text-white rounded font-bold"
+                className="px-4 py-2 bg-red-700 text-white rounded font-bold hover:bg-red-800 disabled:opacity-50"
               >
-                {updating ? "Menyimpan..." : "Simpan"}
+                {updating ? "Menyimpan..." : "Simpan Foto"}
               </button>
               <button
                 onClick={handleCancelAvatar}
-                className="px-4 py-1 bg-gray-300 text-black rounded font-bold cursor-pointer"
+                className="px-4 py-2 bg-gray-300 text-black rounded font-bold cursor-pointer hover:bg-gray-400"
               >
                 Batal
               </button>
@@ -168,7 +203,7 @@ export default function Akun() {
         </div>
 
         <div className="flex items-center justify-center gap-6 mt-5 max-w-7xl mx-auto px-6 py-4">
-          <form className="w-150">
+          <form className="w-full max-w-md">
             {/* Email */}
             <div className="mb-6 relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -264,7 +299,7 @@ export default function Akun() {
                 <button
                   type="button"
                   onClick={() => setIsEditing(true)}
-                  className="w-full py-2 rounded border border-red-500 text-red-500 font-bold cursor-pointer hover:bg-gray-50"
+                  className="w-full py-2 rounded border border-red-500 text-red-500 font-bold cursor-pointer hover:bg-red-50 transition"
                 >
                   Edit Profile
                 </button>
@@ -272,7 +307,7 @@ export default function Akun() {
                 <button
                   type="button"
                   onClick={handleUpdateProfile}
-                  className="w-full py-2 rounded bg-red-700 text-white font-bold cursor-pointer hover:bg-red-900"
+                  className="w-full py-2 rounded bg-red-700 text-white font-bold cursor-pointer hover:bg-red-800 transition"
                 >
                   Simpan
                 </button>
@@ -280,7 +315,7 @@ export default function Akun() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="w-full py-2 rounded bg-red-500 text-white font-bold cursor-pointer hover:bg-red-700"
+                className="w-full py-2 rounded bg-red-500 text-white font-bold cursor-pointer hover:bg-red-600 transition"
               >
                 Logout
               </button>
