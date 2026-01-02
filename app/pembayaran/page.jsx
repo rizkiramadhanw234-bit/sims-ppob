@@ -16,8 +16,7 @@ export default function Pembayaran() {
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
 
-  const serviceCode = searchParams.get("code");
-
+  const [serviceCode, setServiceCode] = useState(null);
   // Profile
   const profile = useSelector((state) => state.profile.data);
   const loadingProfile = useSelector((state) => state.profile.loading);
@@ -44,6 +43,11 @@ export default function Pembayaran() {
       router.push("/login");
     }
   }, [router]);
+
+  // param service code
+  useEffect(() => {
+    setServiceCode(searchParams.get("code"));
+  }, [searchParams]);
 
   // Fetch profile, balance, services
   useEffect(() => {
