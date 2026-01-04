@@ -41,6 +41,7 @@ export default function TopUp() {
   React.useEffect(() => {
     if (topupSuccess) {
       alert("Top Up Berhasil!");
+      router.push("/dashboard");
 
       dispatch(fetchBalance());
       setAmount("");

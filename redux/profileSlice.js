@@ -53,7 +53,6 @@ const profileSlice = createSlice({
     error: null,
   },
   reducers: {
-    // Optional: Add reset action
     resetProfile: (state) => {
       state.data = null;
       state.loading = false;
