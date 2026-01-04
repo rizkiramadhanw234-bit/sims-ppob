@@ -31,7 +31,7 @@ export default function UserHeader() {
   return (
     <div className="flex flex-wrap gap-6 mx-auto px-6 py-4">
       {/* Avatar */}
-      <div className="flex flex-col items-start justify-center max-w-7xl mx-auto px-6 py-4">
+      <div className="flex flex-col items-center md:items-start justify-center max-w-7xl mx-auto px-6 py-4">
         <div>
           <Image
             src={isValidProfileImage ? profile.profile_image : Avatar}

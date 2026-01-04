@@ -101,11 +101,12 @@ export default function PembayaranClient() {
   return (
     <div className="bg-white min-h-screen mb-20">
       <Navbar />
-      <div className="max-w-7xl mx-auto">
+
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <UserHeader />
 
         {/* Title */}
-        <div className="mt-10 ml-10 flex flex-col items-start justify-center max-w-7xl mx-auto px-6 py-4">
+        <div className="mt-10 flex flex-col items-start justify-center py-4">
           <p className="text-base">Pembayaran</p>
 
           {selectedService ? (
@@ -137,17 +138,18 @@ export default function PembayaranClient() {
         {/* Form Pembayaran */}
         <form
           onSubmit={handleSubmit}
-          className="ml-10 flex flex-col items-start justify-center max-w-7xl mx-auto px-6 py-4"
+          className="flex flex-col items-start justify-center py-4"
         >
           <input
-            className="w-full mb-6 shadow border rounded py-2 px-3"
+            className="w-full shadow border rounded py-2 px-3 mb-6"
             type="text"
             placeholder="Masukan Nomor Pelanggan"
             value={customerNumber}
             onChange={(e) => setCustomerNumber(e.target.value)}
           />
+
           <button
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full flex justify-center items-center gap-2"
+            className="bg-red-500 hover:bg-red-700 cursor-pointer text-white font-bold py-2 px-4 rounded w-full flex justify-center items-center gap-2"
             type="submit"
             disabled={pembayaranLoading}
           >

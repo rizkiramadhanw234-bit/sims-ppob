@@ -64,15 +64,17 @@ export default function TopUp() {
     <>
       <div className="bg-white min-h-screen">
         <Navbar />
-        <div className="max-w-7xl mx-auto">
+
+        <div className="max-w-7xl mx-auto px-4">
           <UserHeader />
-          {/* TOP UP FORM */}
-          <div className="mt-10 flex flex-wrap mx-auto px-6 py-4">
-            <div className="flex flex-col items-start justify-center">
+
+          <div className="mt-10 flex flex-col md:flex-row md:justify-between gap-10">
+            {/* FORM TOPUP */}
+            <div className="flex flex-col items-start md:w-1/2">
               <p className="text-base">Silahkan Masukan</p>
               <h1 className="text-xl font-bold">Nominal Top Up Saldo</h1>
 
-              <div className="mt-5 w-170">
+              <div className="mt-5 w-full md:w-150">
                 <input
                   type="number"
                   value={amount}
@@ -91,15 +93,17 @@ export default function TopUp() {
               </div>
             </div>
 
-            {/* PRESET BUTTONS */}
-            <div className="grid grid-cols-3 items-start gap-6 mx-auto px-6 py-4 mt-20">
+            {/* NOMINAL BUTTONS */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:mt-15 gap-4 md:w-1/2 h-fit">
               {[10000, 20000, 50000, 100000, 250000, 500000].map((nominal) => (
                 <div
                   key={nominal}
                   onClick={() => setAmount(nominal)}
-                  className="px-4 py-2 bg-gray-100 rounded sm cursor-pointer hover:bg-gray-200 hover:scale-105 transition duration-150"
+                  className="px-4 py-3 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 hover:scale-105 transition text-center"
                 >
-                  <h1>Rp. {nominal.toLocaleString("id-ID")}</h1>
+                  <h1 className="font-semibold text-sm sm:text-base">
+                    Rp {nominal.toLocaleString("id-ID")}
+                  </h1>
                 </div>
               ))}
             </div>

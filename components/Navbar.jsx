@@ -10,6 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   if (pathname === "/login" || pathname === "/register") return null;
+
   return (
     <>
       <nav className="bg-gray-50 flex items-center justify-between gap-6 mx-auto px-10 py-4 shadow-sm">
@@ -18,22 +19,34 @@ export default function Navbar() {
           <Image src={Logo} alt="logo" className="w-12" />
         </Link>
         {/* Menu Links */}
-        <div className="flex items-center gap-6 text-black">
+        <div className="flex items-center gap-6 text-black text-sm md:text-base">
           <Link
             href="/topup"
-            className={pathname === "/topup" ? "text-red-500" : "text-black"}
+            className={
+              pathname === "/topup"
+                ? "text-red-500"
+                : "text-black text-sm md:text-base"
+            }
           >
             Top Up
           </Link>
           <Link
             href="/history"
-            className={pathname === "/history" ? "text-red-500" : "text-black"}
+            className={
+              pathname === "/history"
+                ? "text-red-500"
+                : "text-black text-sm md:text-base"
+            }
           >
             Transaction
           </Link>
           <Link
             href="/akun"
-            className={pathname === "/akun" ? "text-red-500" : "text-black"}
+            className={
+              pathname === "/akun"
+                ? "text-red-500"
+                : "text-black text-sm md:text-base"
+            }
           >
             Akun
           </Link>

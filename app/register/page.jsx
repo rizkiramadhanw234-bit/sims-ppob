@@ -92,42 +92,42 @@ export default function Register() {
 
   return (
     <>
-      <div className="bg-white min-h-screen flex">
-        <div className="flex flex-wrap gap-25 items-center justify-center max-w-7xl mx-auto px-6 py-4">
-          <div className="flex flex-col items-center justify-center">
+      <div className="bg-white min-h-screen flex items-center justify-center px-4">
+        <div className="flex flex-col md:flex-row items-center justify-center max-w-6xl w-full gap-10 md:gap-20 py-10">
+          {/* LEFT - Form */}
+          <div className="w-full md:w-1/2 flex flex-col items-center">
             {/* logo */}
             <div className="mb-7 flex gap-4 items-center justify-center">
               <Image src={Logo} alt="logo" className="w-10" />
               <h1 className="font-bold text-2xl">SIMS PPOB</h1>
             </div>
-            <div className="mb-10 w-100 text-center">
-              <p className="text-2xl font-bold">
+
+            <div className="mb-10 text-center">
+              <p className="text-xl md:text-2xl font-bold">
                 Masuk atau buat akun untuk memulai
               </p>
             </div>
 
-            {/* Show success message */}
+            {/* success */}
             {registerSuccess && (
-              <div className="mb-4 p-3 bg-green-100 text-green-700 rounded w-full text-center">
+              <div className="mb-4 p-3 bg-green-100 text-green-700 rounded w-full max-w-md text-center">
                 Registrasi berhasil! Mengarahkan ke halaman login...
               </div>
             )}
 
-            {/* form login */}
-            <div className="w-100">
+            {/* form */}
+            <div className="w-full max-w-md">
               <form onSubmit={handleRegister}>
-                {/* Show error from Redux */}
                 {error && (
-                  <p className="text-red-600 font-semibold mb-3 text-base text-center">
+                  <p className="text-red-600 font-semibold mb-3 text-center">
                     {error}
                   </p>
                 )}
 
                 {/* Email */}
                 <div className="mb-7 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 text-gray-400"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -142,21 +142,20 @@ export default function Register() {
                     </svg>
                   </div>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     id="email"
                     type="email"
                     placeholder="Masukan Email Anda"
+                    className="shadow border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500"
                     value={formData.email}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
-                {/* Nama Depan*/}
+                {/* Nama Depan */}
                 <div className="mb-6 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 text-gray-400"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -171,9 +170,9 @@ export default function Register() {
                     </svg>
                   </div>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     id="first_name"
                     placeholder="Masukan Nama Depan"
+                    className="shadow border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:ring-2 focus:ring-red-500"
                     value={formData.first_name}
                     onChange={handleChange}
                     required
@@ -182,9 +181,8 @@ export default function Register() {
 
                 {/* Nama Belakang */}
                 <div className="mb-6 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 text-gray-400"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -199,20 +197,19 @@ export default function Register() {
                     </svg>
                   </div>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     id="last_name"
                     placeholder="Masukan Nama Belakang"
+                    className="shadow border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:ring-2 focus:ring-red-500"
                     value={formData.last_name}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
-                {/* Password*/}
+                {/* Password */}
                 <div className="mb-6 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 text-gray-400"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -227,21 +224,20 @@ export default function Register() {
                     </svg>
                   </div>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     id="password"
                     type="password"
                     placeholder="Buat password"
+                    className="shadow border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:ring-2 focus:ring-red-500"
                     value={formData.password}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
-                {/* Konfirmasi Password*/}
+                {/* Konfirmasi Password */}
                 <div className="mb-6 relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 text-gray-400"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -256,48 +252,55 @@ export default function Register() {
                     </svg>
                   </div>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     id="confirmPassword"
                     type="password"
                     placeholder="Konfirmasi password"
+                    className="shadow border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:ring-2 focus:ring-red-500"
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
-                {/* button login */}
+                {/* Button */}
                 <button
                   disabled={loading}
                   className={`${
                     loading
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-red-500 hover:bg-red-700"
-                  } text-white font-bold py-2 px-4 rounded mt-5 w-full transition-colors`}
-                  type="submit"
+                  } text-white font-bold py-2 rounded w-full mt-5`}
                 >
                   {loading ? "Loading..." : "Registrasi"}
                 </button>
               </form>
             </div>
 
-            {/* register */}
-            <div className="mt-5">
-              <p>
-                Sudah Punya akun? login{" "}
-                <span className="text-red-500 font-bold hover:underline cursor-pointer">
-                  <Link href="/login">di sini</Link>
-                </span>
+            {/* sudah punya akun */}
+            <div className="mt-5 text-center">
+              <p className="text-sm">
+                Sudah punya akun? Login{" "}
+                <Link
+                  href="/login"
+                  className="text-red-500 font-bold hover:underline"
+                >
+                  di sini
+                </Link>
               </p>
             </div>
           </div>
 
-          {/* image banner */}
-          <div className="">
-            <Image src={BannerLogin} alt="banner" className="w-120" />
+          {/* RIGHT - Banner */}
+          <div className="hidden md:block w-1/2">
+            <Image
+              src={BannerLogin}
+              alt="banner"
+              className="w-full max-w-lg mx-auto"
+            />
           </div>
         </div>
       </div>
+      );
     </>
   );
 }
