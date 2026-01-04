@@ -34,7 +34,7 @@ export const updateImage = createAsyncThunk(
         return rejectWithValue(res.data.message || "Upload failed");
       }
 
-      return res.data.data; // This returns { email, first_name, last_name, profile_image }
+      return res.data.data; 
     } catch (error) {
       console.error("Upload error:", error);
       return rejectWithValue(

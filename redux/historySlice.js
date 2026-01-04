@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api/axios"; 
 
-// thunk untuk fetch transaction history
+// thunk fetch transaction history
 export const fetchTransactionHistory = createAsyncThunk(
   "history/fetchTransactionHistory",
   async ({ offset = 0, limit = 3 }, { rejectWithValue }) => {
@@ -14,7 +14,7 @@ export const fetchTransactionHistory = createAsyncThunk(
           response.data.message || "Gagal mengambil history"
         );
       }
-      return response.data.data.records; // ambil array records aja
+      return response.data.data.records;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);
     }

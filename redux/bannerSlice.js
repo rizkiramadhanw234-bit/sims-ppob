@@ -5,7 +5,7 @@ export const fetchBanner = createAsyncThunk(
   "banner/fetchBanner",
   async () => {
     const res = await bannerApi.getBanner();
-    return res.data.data; // array of banners
+    return res.data.data; 
   }
 );
 
