@@ -34,7 +34,7 @@ export const loginUser = createAsyncThunk(
       const response = await authApi.login(credentials);
 
       if (response.data.status === 0) {
-        // Store token - check if window exists
+        // Store token 
         if (typeof window !== "undefined" && response.data.data?.token) {
           localStorage.setItem("token", response.data.data.token);
         }
@@ -90,7 +90,7 @@ const authSlice = createSlice({
     clearRegisterSuccess: (state) => {
       state.registerSuccess = false;
     },
-    // Initialize from localStorage (call this in useEffect)
+    // Initialize from localStorage 
     initializeAuth: (state) => {
       if (typeof window !== "undefined") {
         const token = localStorage.getItem("token");
